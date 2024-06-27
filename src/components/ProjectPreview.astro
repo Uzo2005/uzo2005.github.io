@@ -1,8 +1,15 @@
 ---
 import OutlineShadow from "./OutlineShadow.astro";
 import { Image } from "astro:assets";
+interface Props {
+  projectName: string;
+  projectDescription: string;
+  projectPreviewImg: string;
+  projectUrl: string;
+}
 
-
+const { projectName, projectDescription, projectPreviewImg, projectUrl } =
+  Astro.props;
 ---
 
 <OutlineShadow>
@@ -10,12 +17,12 @@ import { Image } from "astro:assets";
     class="bg-yellowLight w-full h-60 md:h-80 p-3 flex flex-col gap-2 justify-between px-5 md:px-10"
   >
     <h2 class="font-semibold text-sm md:text-lg md:mb-4 text-black">
-      Sample Project Name
+      {projectName}
     </h2>
     <div class="flex justify-between gap-4 w-full h-full">
       <div class="size-40 flex items-start">
         <Image
-          src={"/blog-placeholder-1.jpg"}
+          src={projectPreviewImg}
           width={500}
           height={500}
           alt="sample_image"
@@ -26,13 +33,7 @@ import { Image } from "astro:assets";
       <div
         class="h-full overflow-hidden w-full md:w-[80%] flex items-end text-[10px] md:text-base"
       >
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt vitae
-        ipsam et obcaecati soluta dolore consequuntur repellendus aut
-        praesentium modi! Lorem ipsum dolor sit amet consectetur adipisicing
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim similique
-        voluptatum quasi labore adipisci atque officia placeat blanditiis velit,
-        dolor consectetur natus nulla eum optio perferendis possimus cum libero?
-        Mollitia.
+        {projectDescription} link is {projectUrl}
       </div>
     </div>
   </div>

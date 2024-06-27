@@ -19,17 +19,17 @@ const currentPath = Astro.url.pathname;
           class="flex w-full h-full justify-between items-center *:font-semibold text-grey text-base"
         >
           <li
-            class=`md:text-base text-[10px] ${currentPath == "/" ? "border-b-[3px] border-b-black": ""}`
+            class=`md:text-base text-[10px] ${currentPath === "/" ? "border-b-[3px] border-b-black": ""}`
           >
             <a href="/">Who I am</a>
           </li>
           <li
-            class=`md:text-base text-[10px] ${currentPath == "/blog" ? "border-b-[3px] border-b-black": ""}`
+            class=`md:text-base text-[10px] ${currentPath === "/blog" ? "border-b-[3px] border-b-black": ""}`
           >
             <a href="/blog">My Blog</a>
           </li>
           <li
-            class=`md:text-base text-[10px] ${currentPath == "/projects" ? "border-b-[3px] border-b-black": ""}`
+            class=`md:text-base text-[10px] ${currentPath === "/projects" ? "border-b-[3px] border-b-black": ""}`
           >
             <a href="/projects">My Projects</a>
           </li>

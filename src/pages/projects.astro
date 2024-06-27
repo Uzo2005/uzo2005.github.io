@@ -4,8 +4,12 @@ import ProjectPreview from "../components/ProjectPreview.astro";
 ---
 
 <BaseLayout currentPage="Projects" includeHeader={true}>
-  <ProjectPreview />
-  <ProjectPreview />
-  <ProjectPreview />
-  <ProjectPreview />
+  <div class="lg:w-[55%] w-full mx-auto">
+    <ProjectPreview
+      projectName="Sample Project Name"
+      projectPreviewImg="/blog-placeholder-1.jpg"
+      projectUrl="https://github.com/uzo2005"
+      projectDescription="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut veniam unde tempora nihil modi earum eaque hic ea perspiciatis enim, cupiditate quae, omnis cum sed ullam soluta a vel obcaecati? Sed cumque, est mollitia aliquam dicta quis officia! Voluptatem sed, ducimus possimus in eum quam harum dolorum autem, quisquam repellendus aperiam? Non corrupti velit suscipit ab pariatur nostrum modi asperiores distinctio dolorum odio? Hic sint nisi officia velit vel quaerat ab totam nesciunt porro unde perspiciatis, numquam ducimus libero accusamus id quis eius. Laborum totam, adipisci facilis animi eaque, enim tenetur natus cumque hic quibusdam aliquam aut magnam rem voluptatem?"
+    />
+  </div>
 </BaseLayout>
