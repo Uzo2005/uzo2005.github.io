@@ -1,8 +1,16 @@
 ---
-title: 'Markdown Style Guide'
-description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-pubDate: 'Jul 01 2022'
-heroImage: '/blog-placeholder-1.jpg'
+# title: "Markdown Style Guide"
+# description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
+# pubDate: "Jul 01 2022"
+# heroImage: "/blog-placeholder-1.jpg"
+
+title: "Title"
+subTitle: "Sub title"
+previewSummary: "summary"
+pubDate: "2024-06-27"
+lastModified: "2024-06-27"
+categories: ["programming", "rants"]
+heroImage: "/blog-placeholder-3.jpg"
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
@@ -87,9 +95,9 @@ The blockquote element represents content that is quoted from another source, op
 
 ### Output
 
-| Italics   | Bold     | Code   |
-| --------- | -------- | ------ |
-| _italics_ | **bold** | `code` |
+| Italics   | Bold     | Code   | 4th col     | 4th col     |
+| --------- | -------- | ------ | ----------- | ----------- |
+| _italics_ | **bold** | `code` | hello world | hello world |
 
 ## Code Blocks
 
@@ -99,7 +107,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ````markdown
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -115,7 +123,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 ### Output
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -185,7 +193,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
   - Milk
   - Cheese
 
-## Other Elements — abbr, sub, sup, kbd, mark
+##### Other Elements — abbr, sub, sup, kbd, mark
 
 ### Syntax
 
