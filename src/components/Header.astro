@@ -1,0 +1,36 @@
+---
+import OutlineShadow from "./OutlineShadow.astro";
+import NavLink from "./NavLink.astro";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<header class="h-14 lg:w-[60%] w-full mx-auto">
+  <OutlineShadow>
+    <div class="bg-yellow w-full flex justify-between items-center px-3 py-1">
+      <div class="flex flex-col justify-center items-start">
+        <span class="font-bold md:text-lg text-base text-black">
+          Cletus' Lane
+        </span>
+        <span class="md:text-[10px] text-[6px] font-semibold italic text-grey">
+          On The Information SuperHighway
+        </span>
+      </div>
+      <nav class="w-44 md:w-80 h-full flex items-center">
+        <ul
+          class="flex w-full h-full justify-between items-center *:font-semibold text-grey text-base"
+        >
+          <NavLink href="/" currentPath={currentPath}>Who I am</NavLink>
+          <NavLink href="/blog" currentPath={currentPath}>My Blog</NavLink>
+          <NavLink href="/projects" currentPath={currentPath}
+            >My Projects</NavLink
+          >
+        </ul>
+      </nav>
+    </div>
+  </OutlineShadow>
+</header>

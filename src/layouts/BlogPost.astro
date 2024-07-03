@@ -1,0 +1,37 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+interface Props {
+  title: string;
+  subTitle: string;
+  pubDate: Date;
+  lastModified?: Date | undefined;
+  categories?: string[] | undefined;
+}
+
+const { title, subTitle, pubDate, lastModified, categories } = Astro.props;
+
+import { formatDate } from "../consts";
+
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout currentPage={title} includeHeader={false} currentPath={currentPath}>
+  <div class="w-full lg:w-[50%] mx-auto">
+    <div class="flex flex-col justify-between">
+      <h6 class="h-fit text-black text-opacity-60 flex justify-end">
+        {formatDate(pubDate)}
+      </h6>
+      <h1
+        class="font-bold text-black border-b-[3px] border-b-black whitespace-nowrap w-fit text-4xl md:text-5xl mb-3 mt-4"
+      >
+        {title}
+      </h1>
+    </div>
+    <p class="italic mb-8 text-[10px] md:text-sm text-grey">
+      {subTitle}
+    </p>
+    <div class="markdownContent">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+import OutlineShadow from "./OutlineShadow.astro";
+import { Image } from "astro:assets";
+interface Props {
+  projectName: string;
+  projectDescription: string;
+  projectPreviewImg: string;
+  websiteUrl?: string;
+  githubUrl?: string;
+}
+
+const {
+  projectName,
+  projectDescription,
+  projectPreviewImg,
+  websiteUrl,
+  githubUrl,
+} = Astro.props;
+---
+
+<OutlineShadow>
+  <div
+    class="bg-yellowLight w-full h-40 p-3 flex flex-col gap-2 justify-between px-5 md:px-10"
+  >
+    <div class="flex items-center gap-10">
+      <h2 class="font-semibold text-sm md:text-lg text-black flex items-center">
+        {projectName}
+      </h2>
+      {
+        websiteUrl && (
+          <a href={websiteUrl} class="text-sm md:text-base text-blue underline">
+            website
+          </a>
+        )
+      }
+      {
+        githubUrl && (
+          <a href={githubUrl} class="text-sm md:text-base text-blue underline">
+            source code
+          </a>
+        )
+      }
+    </div>
+
+    <div class="flex justify-between gap-10 w-full h-48 md:h-60">
+      <div class="size-40 flex flex-col items-start">
+        <Image
+          src={projectPreviewImg}
+          width={500}
+          height={500}
+          alt="sample_image"
+          class="rounded-sm"
+        />
+      </div>
+
+      <div
+        class="overflow-hidden w-full md:w-[80%] text-[10px] font-medium italic md:text-base"
+      >
+        {projectDescription}
+      </div>
+    </div>
+  </div>
+</OutlineShadow>

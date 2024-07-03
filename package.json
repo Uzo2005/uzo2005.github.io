@@ -1,0 +1,24 @@
+{
+  "name": "psite",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "tailwindcss -i tailwind.css -o public/styles.css && astro check && astro build",
+    "buildCss": "tailwindcss -i tailwind.css -o public/styles.css --watch",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/mdx": "^3.1.2",
+    "@astrojs/rss": "^4.0.7",
+    "@astrojs/sitemap": "^3.1.6",
+    "astro": "^4.11.1",
+    "typescript": "^5.5.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}

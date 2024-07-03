@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectPreview from "../components/ProjectPreview.astro";
+const currentPath = "/projects";
+---
+
+<BaseLayout
+  currentPage="Projects"
+  includeHeader={true}
+  currentPath={currentPath}
+>
+  <div class="lg:w-[55%] w-full mx-auto">
+    <span class="italic font-medium text-base">coming soon..</span>
+    <!-- <ProjectPreview
+      projectName="Branded Qrcodes"
+      projectPreviewImg="/sample_image.jpg"
+      githubUrl="https://github.com/uzo2005"
+      projectDescription="Generate Unique Qr-code for your company or brands"
+    /> -->
+  </div>
+</BaseLayout>

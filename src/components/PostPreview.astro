@@ -1,0 +1,39 @@
+---
+import OutlineShadow from "./OutlineShadow.astro";
+interface Props {
+  title: string;
+  pubDate: Date;
+  categories: string[] | undefined;
+  slug: string;
+}
+
+const { title, pubDate, categories, slug } = Astro.props;
+import { formatDate } from "../consts";
+---
+
+<OutlineShadow>
+  <div class="bg-yellowLight w-full h-28 md:h-32 p-3 flex flex-col gap-4 px-10">
+    <p
+      class="font-medium text-[10px] md:text-base text-black text-opacity-60 -ml-5"
+    >
+      {formatDate(pubDate)}
+    </p>
+
+    <a href={`/blog/${slug}`}>
+      <h2 class="font-semibold text-sm md:text-2xl mb-1 text-black">
+        {title}
+      </h2>
+    </a>
+    <p
+      class="flex gap-3 text-[10px] md:text-sm ml-auto mt-auto text-black text-opacity-60"
+    >
+      <span class="flex gap-2 w-fit">
+        {
+          categories?.map((category) => (
+            <span class="underline">{category}</span>
+          ))
+        }
+      </span>
+    </p>
+  </div>
+</OutlineShadow>

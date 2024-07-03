@@ -1,0 +1,16 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const entry = await getEntry("articles", "about");
+const { Content, headings } = await entry.render();
+const currentPath = "/";
+---
+
+<BaseLayout currentPage="About" includeHeader={true} currentPath={currentPath}>
+  <div
+    class="text-lg font-medium text-black markdownContent w-full lg:w-[55%] mx-auto"
+  >
+    <Content />
+  </div></BaseLayout
+>

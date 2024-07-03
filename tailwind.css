@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .markdownContent {
+    /* Headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-bold text-black border-b-[3px] border-b-black whitespace-nowrap w-fit;
+    }
+    h1 {
+      @apply text-3xl md:text-4xl mb-6 mt-8;
+    }
+    h2 {
+      @apply text-2xl md:text-3xl mb-5 mt-7;
+    }
+    h3 {
+      @apply text-xl md:text-2xl mb-4 mt-6;
+    }
+    h4 {
+      @apply text-lg md:text-xl mb-3 mt-5;
+    }
+    h5 {
+      @apply text-base md:text-lg mb-2 mt-4;
+    }
+    h6 {
+      @apply text-sm md:text-base mb-2 mt-3;
+    }
+
+    /* Paragraphs and lists */
+    p,
+    ul,
+    ol {
+      @apply mb-4 text-sm md:text-base text-grey;
+    }
+    ul,
+    ol {
+      @apply pl-6;
+    }
+    li {
+      @apply mb-2;
+    }
+    ul {
+      @apply list-disc;
+    }
+    ol {
+      @apply list-decimal;
+    }
+
+    /* Links */
+    a {
+      @apply text-blue underline hover:text-cyan;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      @apply pl-4 border-l-4 border-emphasizedContent italic my-6 text-emphasizedContentLight;
+    }
+
+    pre {
+      @apply bg-backgroundHighlightDark rounded p-4 overflow-x-auto my-6;
+    }
+    pre code {
+      @apply bg-transparent text-bodyTextDark p-0 block md:text-base text-sm;
+    }
+
+    /* Inline code */
+    :not(pre) > code {
+      @apply bg-backgroundHighlightDark text-gray-300 rounded px-1 py-0.5 font-mono text-[10px] md:text-sm;
+    }
+
+    /* Horizontal rule */
+    hr {
+      @apply my-8 border-t border-emphasizedContent;
+    }
+
+    /* Tables */
+    table {
+      @apply w-full my-6 border-collapse;
+    }
+    th,
+    td {
+      @apply border border-emphasizedContent px-4 py-2 text-bodyText md:text-base text-sm;
+    }
+    th {
+      @apply bg-[#24292e] font-medium text-emphasizedContentLight text-sm md:text-base;
+    }
+    small {
+      @apply text-[8px];
+    }
+    kbd {
+      @apply bg-gray-200 rounded px-1 py-0.5 text-sm font-bold text-gray-800 inline-block border border-gray-400 shadow-sm whitespace-nowrap;
+    }
+    abbr {
+      @apply relative cursor-help underline decoration-dotted;
+    }
+    abbr:hover::after,
+    abbr:focus::after {
+      @apply content-[attr(title)] absolute left-0 -bottom-6 whitespace-nowrap bg-black text-white rounded px-1 py-0.5 text-xs z-10;
+    }
+    /* Images */
+    img {
+      @apply max-w-full h-auto my-6 rounded-md border;
+    }
+  }
+}
