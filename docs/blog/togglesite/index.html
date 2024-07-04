@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/styles.css"><title>Cletus Igwe | Poor man&#39;s productivity hack - [togglesite] </title></head> <body class="bg-backgroundLight p-3 font-atkinson">  <main class="min-h-[85vh] my-5"> <!-- <div
+      class="w-full h-40 md:h-64 rounded-md bg-red-500 bg-bannerImageSm md:bg-bannerImageMd bg-no-repeat bg-center bg-cover blur-sm"
+    >
+    </div> -->  <div class="w-full lg:w-[50%] mx-auto"> <div class="flex flex-col justify-between"> <h6 class="h-fit text-black text-opacity-60 flex justify-end"> 4 July 2024 </h6> <h1 class="font-bold text-black border-b-[3px] border-b-black whitespace-nowrap w-fit text-4xl md:text-5xl mb-3 mt-4"> Poor man&#39;s productivity hack - [togglesite] </h1> </div> <p class="italic mb-8 text-[10px] md:text-sm text-grey"> nimscript to edit /etc/hosts file to restrict my access to social-media and entertainment websites. </p> <div class="markdownContent">  <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="nim"><code><span class="line"><span style="color:#6A737D">#FILE: togglesite.nim</span></span>
+<span class="line"><span style="color:#6A737D">#works on nim v2.1.1</span></span>
+<span class="line"><span style="color:#6A737D">#build it with `nim c -d:release togglesite.nim`</span></span>
+<span class="line"><span style="color:#6A737D">#make sure the `togglesite` binary is in your PATH environmental variable</span></span>
+<span class="line"><span style="color:#6A737D">#use it like this: `togglesite  twitter` or `togglesite randomwebsite.com`</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> sequtils, strutils, os, tables, sugar</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> isAdmin</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">.not:</span></span>
+<span class="line"><span style="color:#79B8FF">    quit</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"ERROR: This script needs sudo permissions to edit /etc/hosts"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span></span>
+<span class="line"><span style="color:#E1E4E8">    hostsFile </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "/etc/hosts"</span></span>
+<span class="line"><span style="color:#E1E4E8">    siteMap </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">        "twitter"</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> "x.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "x"</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> "x.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "whatsapp"</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> "web.whatsapp.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "youtube"</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> "youtube.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">toTable</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> sites </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> commandLineParams</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> hostsInfo </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> readfile</span><span style="color:#E1E4E8">(hostsFile)</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">strip</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">splitLines</span><span style="color:#F97583">.</span><span style="color:#79B8FF">mapit</span><span style="color:#E1E4E8">(it</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">strip)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> site </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> sites</span><span style="color:#F97583">:</span></span>
+<span class="line"><span style="color:#F97583">    var</span></span>
+<span class="line"><span style="color:#E1E4E8">        siteOn </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "#127.0.0.1 "</span></span>
+<span class="line"><span style="color:#E1E4E8">        siteOff </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "127.0.0.1 "</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> siteMap</span><span style="color:#F97583">.</span><span style="color:#79B8FF">hasKey</span><span style="color:#E1E4E8">(site)</span><span style="color:#F97583">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        siteOn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> siteOn </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8"> siteMap[site]</span></span>
+<span class="line"><span style="color:#E1E4E8">        siteOff </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> siteOff </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8"> siteMap[site]</span></span>
+<span class="line"><span style="color:#F97583">    else:</span></span>
+<span class="line"><span style="color:#E1E4E8">        siteOn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> siteOn </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8"> site</span></span>
+<span class="line"><span style="color:#E1E4E8">        siteOff </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> siteOff </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8"> site</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> siteOn </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> hostsInfo</span><span style="color:#F97583">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        hostsInfo </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> hostsInfo</span><span style="color:#F97583">.</span><span style="color:#79B8FF">map</span><span style="color:#E1E4E8">((line) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (line </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> siteOn)</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> siteOff </span><span style="color:#F97583">else:</span><span style="color:#E1E4E8"> line))</span></span>
+<span class="line"><span style="color:#F97583">    elif</span><span style="color:#E1E4E8"> siteOff </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> hostsInfo</span><span style="color:#F97583">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        hostsInfo </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> hostsInfo</span><span style="color:#F97583">.</span><span style="color:#79B8FF">map</span><span style="color:#E1E4E8">((line) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (line </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> siteOff)</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> siteOn </span><span style="color:#F97583">else:</span><span style="color:#E1E4E8"> line))</span></span>
+<span class="line"><span style="color:#F97583">    else:</span></span>
+<span class="line"><span style="color:#F97583">        echo</span><span style="color:#9ECBFF"> "This is the first time "</span><span style="color:#E1E4E8">, site, </span><span style="color:#9ECBFF">" is getting added to /etc/hosts"</span></span>
+<span class="line"><span style="color:#E1E4E8">        hostsInfo</span><span style="color:#F97583">.</span><span style="color:#79B8FF">add</span><span style="color:#E1E4E8">(siteOff)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">hostsFile</span><span style="color:#F97583">.</span><span style="color:#79B8FF">writeFile</span><span style="color:#E1E4E8">(hostsInfo</span><span style="color:#F97583">.</span><span style="color:#79B8FF">join</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>  </div> </div>  </main> <footer class="text-[10px] md:text-sm text-grey font-semibold w-full mt-3"> <p class="text-end">
+&copy; Cletus Igwe <span class="text-black text-opacity-70 font-medium">|</span> 2024 </p> </footer> </body></html>
