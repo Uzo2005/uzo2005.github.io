@@ -9,17 +9,15 @@ const currentPath = "/blog";
 
 <BaseLayout currentPage="Blog" includeHeader={true} currentPath={currentPath}>
   <div class="lg:w-[55%] w-full mx-auto">
-    <span class="italic font-medium text-base">coming soon..</span>
-    <!-- {
+    {
       blogPosts.map((blogPost) => (
         <PostPreview
           title={blogPost.data.title}
           pubDate={blogPost.data.pubDate}
-          summary={blogPost.data.previewSummary}
           categories={blogPost.data.categories}
           slug={blogPost.slug}
         />
       ))
-    } -->
+    }
   </div>
 </BaseLayout>
