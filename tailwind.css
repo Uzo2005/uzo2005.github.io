@@ -11,7 +11,7 @@
     h4,
     h5,
     h6 {
-      @apply font-bold text-black lg:border-b-[3px] lg:border-b-black w-fit;
+      @apply font-bold text-black border-b-[3px] border-b-black w-fit;
     }
     h1 {
       @apply text-3xl md:text-4xl mb-6 mt-8;

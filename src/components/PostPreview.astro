@@ -12,28 +12,31 @@ import { formatDate } from "../consts";
 ---
 
 <OutlineShadow>
-  <div class="bg-yellowLight w-full h-28 md:h-32 p-3 flex flex-col gap-4 px-10">
+  <div
+    class="bg-yellowLight w-full h-28 md:h-32 py-1 md:py-2 grid grid-rows-10 px-2 md:px-4"
+  >
     <p
-      class="font-medium text-[10px] md:text-base text-black text-opacity-60 -ml-5"
+      class="font-medium text-[10px] md:text-base text-black text-opacity-60 row-start-1 row-span-2"
     >
       {formatDate(pubDate)}
     </p>
 
-    <a href={`/blog/${slug}`}>
+    <div class="row-start-3 row-span-full flex flex-col justify-between">
       <h2 class="font-semibold text-sm md:text-2xl mb-1 text-black">
-        {title}
+        <a href={`/blog/${slug}`} class="h-full w-full">
+          {title}
+        </a>
       </h2>
-    </a>
-    <p
-      class="flex gap-3 text-[10px] md:text-sm ml-auto mt-auto text-black text-opacity-60"
-    >
-      <span class="flex gap-2 w-fit">
+
+      <div class="gap-2 w-full flex justify-end">
         {
           categories?.map((category) => (
-            <span class="underline">{category}</span>
+            <div class="text-[10px] md:text-sm text-black text-opacity-70 underline">
+              {category}
+            </div>
           ))
         }
-      </span>
-    </p>
+      </div>
+    </div>
   </div>
 </OutlineShadow>
